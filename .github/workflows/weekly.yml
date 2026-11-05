@@ -1,9 +1,10 @@
-name: Weekly wine index refresh
+name: Rebuild wine index
 
 on:
-  schedule:
-    - cron: "0 6 * * 1"   # Mondays 06:00 UTC
-  workflow_dispatch:      # run by hand from the Actions tab
+  push:
+    branches: [main]
+    paths: ["inbox/**.xlsx", "wine_index.py", "site/**"]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -15,7 +16,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  refresh:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,14 +24,15 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install openpyxl
-      - name: Pull Alko price list and rebuild indices
-        run: python wine_index.py
-      - name: Commit new snapshot
+      - name: Turn uploaded price lists into snapshots and rebuild indices
+        run: |
+          python wine_index.py --inbox
+      - name: Commit snapshots and site data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898+github-actions[bot]@users.noreply.github.com"
-          git add data site/data.js
-          git diff --cached --quiet || git commit -m "Weekly wine index refresh"
+          git add -A inbox data site/data.js 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Add price list snapshot and rebuild indices"
           git push
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

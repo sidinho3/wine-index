@@ -159,7 +159,7 @@ try { Object.assign(state, JSON.parse(localStorage.getItem("wine-index") || "{}"
 const save = () => { try { localStorage.setItem("wine-index", JSON.stringify({ g: state.g, tier: state.tier, weeks: state.weeks })); } catch (e) {} };
 
 if (!D) {
-  document.querySelector("main").innerHTML = '<p class="empty">No data yet. Run <code>python wine_index.py</code> to pull the first price list.</p>';
+  document.querySelector("main").innerHTML = '<p class="empty">No data yet. Upload Alko's price list to the <code>inbox</code> folder of the repository to build the first snapshot.</p>';
 } else {
   if (!D.groups.some(g => g.id === state.g)) state.g = "all";
   $("updated").textContent = `${D.dates.length} weekly snapshot${D.dates.length > 1 ? "s" : ""} · last pull ${dfmt(D.dates.at(-1))}`;

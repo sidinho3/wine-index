@@ -20,6 +20,7 @@ Index method (similar in spirit to published fine-wine indices):
 Usage:
   python wine_index.py              # download, snapshot, rebuild
   python wine_index.py --xlsx FILE  # use a file you downloaded yourself
+  python wine_index.py --inbox      # process every .xlsx dropped into inbox/, then remove them
   python wine_index.py --build-only # just rebuild site/data.js
 """
 import argparse
@@ -110,10 +111,13 @@ def parse_alko(xlsx_bytes):
     import openpyxl  # pip install openpyxl
     wb = openpyxl.load_workbook(io.BytesIO(xlsx_bytes), read_only=True, data_only=True)
     ws = wb.worksheets[0]
-    header, rows = None, []
+    header, rows, list_date = None, [], None
     for row in ws.iter_rows(values_only=True):
         cells = ["" if c is None else c for c in row]
         if header is None:
+            m = re.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", " ".join(str(c) for c in cells))
+            if m and not list_date:
+                list_date = dt.date(int(m[3]), int(m[2]), int(m[1])).isoformat()
             if cells and str(cells[0]).strip() == "Numero":
                 header = [str(c).strip() for c in cells]
             continue
@@ -139,7 +143,7 @@ def parse_alko(xlsx_bytes):
         })
     if header is None:
         raise ValueError("Could not find the 'Numero' header row - has Alko changed the file format?")
-    return rows
+    return rows, list_date
 
 
 FIELDS = ["id", "name", "producer", "size_l", "price", "country", "region", "vintage", "type"]
@@ -280,11 +284,22 @@ def main():
     ap.add_argument("--xlsx", help="use a price list you downloaded yourself")
     ap.add_argument("--date", help="snapshot date YYYY-MM-DD (default today)")
     ap.add_argument("--build-only", action="store_true")
+    ap.add_argument("--inbox", action="store_true")
     a = ap.parse_args()
-    if not a.build_only:
+    if a.inbox:
+        files = sorted((ROOT / "inbox").glob("*.xlsx"))
+        for f in files:
+            rows, list_date = parse_alko(f.read_bytes())
+            date = list_date or dt.date.today().isoformat()
+            print(f"{f.name}: saved {len(rows)} wines to {save_snapshot(rows, date)}")
+            f.unlink()
+        if not files:
+            print("Inbox is empty.")
+            return build() if any(SNAP_DIR.glob("*.csv")) else 0
+    elif not a.build_only:
         data = pathlib.Path(a.xlsx).read_bytes() if a.xlsx else download()
-        rows = parse_alko(data)
-        date = a.date or dt.date.today().isoformat()
+        rows, list_date = parse_alko(data)
+        date = a.date or list_date or dt.date.today().isoformat()
         path = save_snapshot(rows, date)
         print(f"Saved {len(rows)} wines to {path}")
     return build()
