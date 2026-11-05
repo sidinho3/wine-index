@@ -1,0 +1,568 @@
+SOURCE https://www.aa.camcom.it/sites/default/files/contenuto_redazione/oldsite/pricelist/Vini/Vini_20160310_10.pdf
+Quotazioni della Borsa Merci Telematica Italiana riferite al periodo 25/02/2016 - 02/03/2016
+
+Comunicazione Prezzi Provinciale
+Le quotazioni delle singole province si riferiscono ai diversi contratti conclusi nella settimana di riferimento e sono calcolate come media ponderata dei
+
+prezzi sulle quantità.
+
+
+
+Quotazioni sui mercati a pronti
+
+
+CEREALI E COLTIVAZIONI INDUSTRIALI                                              Modalità         Provincia         Prezzo      U.M.(p)   Quantità    U.M.(q)
+Granoturco secco
+Mais secco naz. uso zootec.                                                       Franco           Rovigo          163,000       €/t       450,00        t
+                                                                                 partenza
+Risone
+Augusto B                                                                         Franco           Vercelli        292,960       €/t       30,00         t
+                                                                                 partenza
+Creso A                                                                           Franco           Vercelli        292,960       €/t       210,00        t
+                                                                                 partenza
+Gladio B                                                                          Franco           Vercelli        292,960       €/t       10,00         t
+                                                                                 partenza
+Luna A                                                                            Franco           Vercelli        292,960       €/t       100,00        t
+                                                                                 partenza
+Semi di soia
+Semi Soia Naz                                                                     Franco           Padova          325,000       €/t       300,00        t
+                                                                                 partenza
+
+
+
+
+Quotazioni sui mercati a consegna differita
+
+
+CEREALI E COLTIVAZIONI INDUSTRIALI                                              Modalità         Provincia         Prezzo      U.M.(p)   Quantità    U.M.(q)
+Grano tenero
+Frumento tenero naz. panificabile ago-2016 ott-2016                               Franco           Rovigo          170,000       €/t       600,00        t
+                                                                                   arrivo
+Granoturco secco
+Mais secco naz. uso zootec. mar-2016                                              Franco           Rovigo          163,000       €/t       900,00        t
+                                                                                 partenza
+Mais secco naz. uso zootec. mar-2016 mag-2016                                     Franco           Padova          163,000       €/t       600,00        t
+                                                                                 partenza
+Quotazioni della Borsa Merci Telematica Italiana riferite al periodo 25/02/2016 - 02/03/2016
+
+Comunicazione Prezzi Regionale
+Le quotazioni delle singole regioni si riferiscono ai diversi contratti conclusi nella settimana di riferimento e sono calcolate come media ponderata dei prezzi
+
+sulle quantità tenendo conto di tutte le transazioni concluse sull'intero territorio regionale
+
+
+
+Quotazioni sui mercati a pronti
+
+
+CEREALI E COLTIVAZIONI INDUSTRIALI                                                 Modalità        Regione          Prezzo      U.M.(p)   Quantità    U.M.(q)
+Cereali minori
+Sorgo com. uso zootec.                                                              Franco       Emilia Romagna     161,000       €/t       800,00        t
+                                                                                     arrivo
+Triticale com.                                                                      Franco         Lombardia        167,000       €/t       25,00         t
+                                                                                     arrivo
+Grano duro
+Frumento duro naz. fino Centro                                                      Franco          Marche          247,000       €/t       300,00        t
+                                                                                     arrivo
+Frumento duro naz. fino Nord                                                        Franco          Veneto          246,000       €/t       450,00        t
+                                                                                     arrivo
+Frumento duro naz. fino Sud                                                         Franco          Veneto          258,000       €/t      1500,00        t
+                                                                                     arrivo
+Grano tenero
+Frumento tenero com. di forza                                                       Franco          Toscana         225,000       €/t       50,00         t
+                                                                                     arrivo
+Frumento tenero naz. panificabile                                                   Franco       Emilia Romagna     170,000       €/t       600,00        t
+                                                                                     arrivo
+Granoturco secco
+Mais com. bio uso alimentare                                                        Franco          Toscana         325,000       €/t       28,00         t
+                                                                                     arrivo
+Mais naz. bio uso alimentare                                                        Franco          Marche          330,000       €/t       30,00         t
+                                                                                   partenza
+Mais secco com. uso zootec.                                                         Franco       Emilia Romagna     166,000       €/t       300,00        t
+                                                                                   partenza
+Mais secco Naz. q. Belgrano                                                         Franco          Toscana         199,000       €/t       15,00         t
+                                                                                   partenza
+Mais secco naz. uso zootec.                                                         Franco          Veneto          163,722       €/t       540,00        t
+                                                                                   partenza
+Mais secco naz. uso zootec. con caratteristiche                                     Franco          Toscana         174,000       €/t       30,00         t
+                                                                                   partenza
+Risone
+Augusto B                                                                           Franco         Piemonte         292,960       €/t       30,00         t
+                                                                                   partenza
+Creso A                                                                             Franco         Piemonte         292,960       €/t       210,00        t
+                                                                                   partenza
+Gladio B                                                                            Franco         Piemonte         292,960       €/t       10,00         t
+                                                                                   partenza
+Luna A                                                                              Franco         Piemonte         292,960       €/t       100,00        t
+                                                                                   partenza
+Semi di cotone
+Semi di cotone esteri                                                               Franco       Emilia Romagna     280,000       €/t       50,00         t
+                                                                                     arrivo
+Semi di cotone esteri                                                               Franco          Veneto          310,000       €/t       100,00        t
+                                                                                     arrivo
+Semi di cotone esteri                                                               Franco       Emilia Romagna     298,400       €/t       75,00         t
+                                                                                   partenza
+Semi di soia
+Semi Soia Naz                                                                       Franco          Veneto          330,000       €/t       510,00        t
+                                                                                     arrivo
+Semi Soia Naz                                                                       Franco          Veneto          325,000       €/t       300,00        t
+                                                                                   partenza
+Sottoprodotti Macinazione
+Crusca Tenero Rin                                                                   Franco       Emilia Romagna     112,000       €/t       30,00         t
+                                                                                   partenza
+Crusca Tenero Sac                                                                   Franco          Umbria          136,000       €/t       13,00         t
+                                                                                   partenza
+Cruscame Duro Cub                        Franco      Lombardia      123,000     €/t      120,00       t
+                                          arrivo
+Cruscame Ten Cub                         Franco      Lombardia      122,667     €/t      90,00        t
+                                          arrivo
+Cruscame Ten Cub                         Franco    Emilia Romagna   114,600     €/t      75,00        t
+                                        partenza
+Farinaccio Dur Rin                       Franco       Abruzzo       112,000     €/t      30,00        t
+                                          arrivo
+Farinaccio Dur Rin                       Franco    Emilia Romagna   123,000     €/t      90,00        t
+                                          arrivo
+Farinaccio Dur Rin                       Franco      Lombardia      117,333     €/t      180,00       t
+                                          arrivo
+Farinaccio Dur Rin                       Franco       Toscana       119,000     €/t      60,00        t
+                                          arrivo
+Farinetta Duro Rin                       Franco      Lombardia      212,000     €/t      30,00        t
+                                          arrivo
+Tritello Ten Rin                         Franco      Lombardia      120,000     €/t      30,00        t
+                                          arrivo
+Tritello Ten Rin                         Franco       Veneto        110,000     €/t      60,00        t
+                                        partenza
+CONSERVE VEGETALI                       Modalità     Regione        Prezzo    U.M.(p)   Quantità   U.M.(q)
+Derivati pomodoro altre confezioni
+Doppio Conc. barattoli 70 g pz. 100      Franco      Campania       24,441    €/conf.    96,00      conf.
+                                          arrivo
+Passata HB bio barattoli 3 Kg pz. 6      Franco       Toscana       11,460    €/conf.    10,00      conf.
+                                          arrivo
+Passata HB bio bottiglia 680 g pz. 12    Franco      Campania        6,600    €/conf.     1,00      conf.
+                                          arrivo
+Passata HB bio bottiglia 680 g pz. 12    Franco    Emilia Romagna    7,080    €/conf.    72,00      conf.
+                                          arrivo
+Passata HB bio bottiglia 680 g pz. 12    Franco       Toscana        6,700    €/conf.    12,00      conf.
+                                          arrivo
+Passata HB bottiglia 3 Kg pz. 6          Franco      Campania        9,500    €/conf.    30,00      conf.
+                                          arrivo
+Passata HB bottiglia 3 Kg pz. 6          Franco        Puglia        9,261    €/conf.    60,00      conf.
+                                          arrivo
+Passata HB bottiglia 3 Kg pz. 6          Franco       Toscana        9,650    €/conf.    55,00      conf.
+                                          arrivo
+Passata HB bottiglia 3 Kg pz. 6          Franco       Veneto         9,952    €/conf.    99,00      conf.
+                                          arrivo
+Passata HB bottiglia 340 g pz. 12        Franco       Marche         4,332    €/conf.    24,00      conf.
+                                          arrivo
+Passata HB bottiglia 700 g pz. 12        Franco      Campania        5,280    €/conf.   3284,00     conf.
+                                          arrivo
+Passata HB bottiglia 700 g pz. 12        Franco    Emilia Romagna    5,952    €/conf.    72,00      conf.
+                                          arrivo
+Passata HB bottiglia 700 g pz. 12        Franco      Lombardia       5,940    €/conf.    27,00      conf.
+                                          arrivo
+Passata HB bottiglia 700 g pz. 12        Franco       Marche         5,700    €/conf.    72,00      conf.
+                                          arrivo
+Passata HB bottiglia 700 g pz. 12        Franco        Puglia        5,314    €/conf.   1992,00     conf.
+                                          arrivo
+Passata HB bottiglia 700 g pz. 12        Franco      Sardegna        6,510    €/conf.   1440,00     conf.
+                                          arrivo
+Passata HB bottiglia 700 g pz. 12        Franco       Toscana        5,787    €/conf.    216,00     conf.
+                                          arrivo
+Passata HB bottiglia 700 g pz. 12        Franco       Veneto         5,634    €/conf.    720,00     conf.
+                                          arrivo
+Passata HB bottiglia 700 g pz. 12        Franco      Campania        5,634    €/conf.   2196,00     conf.
+                                        partenza
+Pelati barattoli 0,5 Kg pz. 12           Franco      Campania       11,040    €/conf.     1,00      conf.
+                                          arrivo
+Pelati barattoli 0,5 Kg pz. 24           Franco      Campania        8,467    €/conf.   1344,00     conf.
+                                          arrivo
+Pelati barattoli 0,5 Kg pz. 24           Franco    Emilia Romagna    7,752    €/conf.    30,00      conf.
+                                          arrivo
+Pelati barattoli 0,5 Kg pz. 24           Franco       Marche         8,436    €/conf.     6,00      conf.
+                                          arrivo
+Pelati barattoli 0,5 Kg pz. 24           Franco        Puglia        7,425    €/conf.    354,00     conf.
+                                          arrivo
+Pelati barattoli 0,5 Kg pz. 24           Franco       Toscana        7,795    €/conf.    168,00     conf.
+                                          arrivo
+Pelati barattoli 0,5 Kg pz. 24           Franco      Campania        7,050    €/conf.    336,00     conf.
+                                        partenza
+Pelati barattoli 0,8 Kg pz. 12           Franco      Campania        7,390    €/conf.    144,00     conf.
+                                          arrivo
+Pelati barattoli 0,8 Kg pz. 12           Franco        Puglia        6,958    €/conf.    90,00      conf.
+                                          arrivo
+Pelati barattoli 0,8 Kg pz. 12           Franco       Toscana        7,730    €/conf.    252,00     conf.
+                                          arrivo
+Pelati barattoli 0,8 Kg pz. 12           Franco       Veneto         7,159    €/conf.    312,00     conf.
+                                          arrivo
+Pelati barattoli 0,8 Kg pz. 12           Franco      Campania        6,600    €/conf.    168,00     conf.
+                                        partenza
+Pelati barattoli 2,5 Kg pz. 6            Franco      Campania        9,999    €/conf.    400,00     conf.
+                                          arrivo
+Pelati barattoli 2,5 Kg pz. 6            Franco        Liguria       9,500    €/conf.    660,00     conf.
+                                          arrivo
+Pelati barattoli 2,5 Kg pz. 6            Franco      Lombardia      10,980    €/conf.    25,00      conf.
+                                          arrivo
+Pelati barattoli 2,5 Kg pz. 6            Franco       Marche        10,260    €/conf.    165,00     conf.
+                                          arrivo
+Pelati barattoli 2,5 Kg pz. 6            Franco       Toscana        9,993    €/conf.    275,00     conf.
+                                          arrivo
+Pelati barattoli 2,5 Kg pz. 6            Franco      Campania        8,287    €/conf.   2220,00     conf.
+                                        partenza
+Pelati barattoli 3 Kg pz. 6              Franco    Emilia Romagna    9,494    €/conf.    850,00     conf.
+                                          arrivo
+Pelati barattoli 3 Kg pz. 6              Franco        Puglia        8,722    €/conf.    120,00     conf.
+                                          arrivo
+Pelati barattoli 3 Kg pz. 6              Franco        Sicilia       8,300    €/conf.    220,00     conf.
+                                          arrivo
+Pelati barattoli 3,4 Kg pz. 6            Franco      Campania        8,500    €/conf.   3840,00     conf.
+                                          arrivo
+Pelati bio barattoli 3 Kg pz. 6          Franco       Toscana       11,460    €/conf.    10,00      conf.
+                                          arrivo
+Pizza Sauce 2,5 Kg pz. 6                 Franco      Campania        9,995    €/conf.    110,00     conf.
+                                          arrivo
+Pizza Sauce 2,5 Kg pz. 6                 Franco        Liguria       7,942    €/conf.    275,00     conf.
+                                          arrivo
+Pizza Sauce 2,5 Kg pz. 6                 Franco      Lombardia      10,560    €/conf.    30,00      conf.
+                                          arrivo
+Pizza Sauce 2,5 Kg pz. 6                 Franco       Toscana        9,922    €/conf.    275,00     conf.
+                                          arrivo
+Pizza Sauce 2,5 Kg pz. 6                 Franco       Umbria         9,000    €/conf.    825,00     conf.
+                                          arrivo
+Pizza Sauce 2,5 Kg pz. 6                 Franco      Campania        8,750    €/conf.    300,00     conf.
+                                        partenza
+Pizza Sauce 4 Kg pz. 3                   Franco      Campania        7,900    €/conf.    66,00      conf.
+                                          arrivo
+Pizza Sauce 4 Kg pz. 3                   Franco        Lazio         8,000    €/conf.    528,00     conf.
+                                          arrivo
+Pizza Sauce 4 Kg pz. 3                   Franco      Lombardia       8,085    €/conf.    66,00      conf.
+                                          arrivo
+Polpa barattoli 0,5 Kg pz. 24            Franco      Campania        7,426    €/conf.    85,00      conf.
+                                          arrivo
+Polpa barattoli 0,5 Kg pz. 24            Franco       Marche         8,379    €/conf.    36,00      conf.
+                                          arrivo
+Polpa barattoli 0,5 Kg pz. 24            Franco        Puglia        7,219    €/conf.    116,00     conf.
+                                          arrivo
+Polpa barattoli 0,5 Kg pz. 24            Franco       Toscana        9,566    €/conf.    12,00      conf.
+                                          arrivo
+Polpa barattoli 0,5 Kg pz. 24            Franco      Campania        6,950    €/conf.    84,00      conf.
+                                        partenza
+Polpa barattoli 0,680 Kg pz.12           Franco       Marche         7,410    €/conf.    10,00      conf.
+                                          arrivo
+Polpa barattoli 3 Kg pz. 6               Franco    Emilia Romagna    7,800    €/conf.    50,00      conf.
+                                          arrivo
+Polpa barattoli 3 Kg pz. 6               Franco      Lombardia       9,720    €/conf.    110,00     conf.
+                                          arrivo
+Polpa barattoli 3 Kg pz. 6               Franco       Toscana       10,300    €/conf.    110,00     conf.
+                                          arrivo
+Polpa barattoli 5 Kg pz. 2               Franco      Lombardia       6,140    €/conf.    120,00     conf.
+                                          arrivo
+Polpa barattoli 5 Kg pz. 3               Franco        Sicilia       7,100    €/conf.    77,00      conf.
+                                          arrivo
+Pom. Ciliegia barattolo 0,5 Kg pz. 24    Franco      Campania        9,079    €/conf.    84,00      conf.
+                                          arrivo
+Pom. Ciliegia barattolo 0,5 Kg pz. 24    Franco    Emilia Romagna   10,992    €/conf.    36,00      conf.
+                                          arrivo
+Pom. Ciliegia barattolo 0,5 Kg pz. 24    Franco        Puglia        9,197    €/conf.    174,00     conf.
+                                          arrivo
+Pom. Ciliegia barattolo 0,5 Kg pz. 24    Franco      Campania        8,950    €/conf.    84,00      conf.
+                                        partenza
+Pom. Ciliegia barattolo 2.5 Kg pz. 6     Franco      Campania        9,500    €/conf.    120,00     conf.
+                                        partenza
+Derivati Pomodoro fusti/sacchi
+Semplice Conc. HB sacchi                 Franco      Campania        1,550     €/kg     31680,00     kg
+                                        partenza
+FORAGGI E MANGIMI                       Modalità     Regione        Prezzo    U.M.(p)   Quantità   U.M.(q)
+Erba medica disidr.
+Erba medica I qual. pellets              Franco    Emilia Romagna   201,818     €/t      660,00       t
+                                        partenza
+Erba medica I qual. pellets              Franco       Veneto        195,000     €/t      30,00        t
+                                        partenza
+Polpe barbabietola
+Polpe estere diam. fino 10mm             Franco    Emilia Romagna   188,000     €/t      60,00        t
+                                          arrivo
+Polpe estere diam. fino 10mm    Franco          Veneto            184,522     €/t      115,00        t
+                                 arrivo
+Polpe estere diam. fino 10mm    Franco     Emilia Romagna         190,000     €/t       15,00        t
+                               partenza
+FRUTTA                         Modalità        Regione            Prezzo    U.M.(p)   Quantità    U.M.(q)
+Actinidia
+Actinidia Altre Varietà         Franco     Emilia Romagna          1,327     €/kg      9940,00      kg
+                                 arrivo
+Actinidia Altre Varietà         Franco        Lombardia            0,923     €/kg     30880,00      kg
+                                 arrivo
+Actinidia Altre Varietà         Franco         Piemonte            0,657     €/kg     163005,00     kg
+                                 arrivo
+Actinidia Altre Varietà         Franco         Toscana             1,104     €/kg      8312,00      kg
+                                 arrivo
+Actinidia Altre Varietà         Franco    Trentino Alto-Adige      0,350     €/kg      3300,00      kg
+                                 arrivo
+Actinidia Altre Varietà         Franco          Veneto             0,608     €/kg     14471,00      kg
+                                 arrivo
+Actinidia Altre Varietà         Franco         Piemonte            0,350     €/kg     22386,29      kg
+                               partenza
+Actinidia Altre Varietà         Franco          Veneto             0,404     €/kg     21874,00      kg
+                               partenza
+Arance
+Arance Altre Varietà            Franco     Emilia Romagna          0,566     €/kg      6684,00      kg
+                                 arrivo
+Arance Altre Varietà            Franco        Lombardia            0,873     €/kg      3536,20      kg
+                                 arrivo
+Arance Altre Varietà            Franco          Veneto             0,694     €/kg      4597,10      kg
+                                 arrivo
+Arance Altre Varietà            Franco          Veneto             0,950     €/kg      300,00       kg
+                               partenza
+Cedri
+Cedri Altre Varietà             Franco        Lombardia            0,860     €/kg      142,51       kg
+                                 arrivo
+Clementine
+Clementine Altre Varietà        Franco          Abruzzo            0,895     €/kg      5133,00      kg
+                                 arrivo
+Fragole
+Fragole Altre Varietà           Franco        Lombardia            3,000     €/kg      150,00       kg
+                                 arrivo
+Fragole Altre Varietà           Franco         Campania            5,610     €/kg      3288,32      kg
+                               partenza
+Limoni
+Limoni Altre Varietà            Franco        Lombardia            1,848     €/kg      1285,41      kg
+                                 arrivo
+Limoni Altre Varietà            Franco          Veneto             1,267     €/kg      900,00       kg
+                               partenza
+Mele
+Mele Altre Varietà              Franco         Campania            0,268     €/kg     334548,00     kg
+                                 arrivo
+Mele Altre Varietà              Franco     Emilia Romagna          0,204     €/kg     59525,00      kg
+                                 arrivo
+Mele Altre Varietà              Franco    Friuli Venezia Giulia    0,450     €/kg      789,00       kg
+                                 arrivo
+Mele Altre Varietà              Franco        Lombardia            0,827     €/kg      6092,80      kg
+                                 arrivo
+Mele Altre Varietà              Franco         Piemonte            0,375     €/kg     16221,00      kg
+                                 arrivo
+Mele Altre Varietà              Franco           Puglia            0,416     €/kg      5598,00      kg
+                                 arrivo
+Mele Altre Varietà              Franco         Sardegna            0,780     €/kg      2546,00      kg
+                                 arrivo
+Mele Altre Varietà              Franco    Trentino Alto-Adige      0,090     €/kg      4362,00      kg
+                                 arrivo
+Mele Altre Varietà              Franco          Veneto             0,475     €/kg     32801,00      kg
+                                 arrivo
+Mele Altre Varietà              Franco          Veneto             0,561     €/kg     227087,00     kg
+                               partenza
+Pere
+Pere Altre Varietà              Franco         Campania            0,584     €/kg     91437,20      kg
+                                 arrivo
+Pere Altre Varietà              Franco    Friuli Venezia Giulia    0,644     €/kg      4071,00      kg
+                                 arrivo
+Pere Altre Varietà              Franco        Lombardia            0,844     €/kg     22560,40      kg
+                                 arrivo
+Pere Altre Varietà              Franco          Marche             0,895     €/kg     15202,00      kg
+                                 arrivo
+Pere Altre Varietà              Franco           Puglia            0,614     €/kg     15440,20      kg
+                                 arrivo
+Pere Altre Varietà              Franco         Sardegna            0,700     €/kg      1020,00      kg
+                                 arrivo
+Pere Altre Varietà                       Franco          Sicilia         0,572     €/kg      30279,00     kg
+                                          arrivo
+Pere Altre Varietà                       Franco    Trentino Alto-Adige   0,102     €/kg      17941,11     kg
+                                          arrivo
+Pere Altre Varietà                       Franco         Veneto           0,505     €/kg      79652,20     kg
+                                          arrivo
+Pere Altre Varietà                       Franco         Veneto           1,122     €/kg      4351,00      kg
+                                        partenza
+IV GAMMA                                Modalità       Regione           Prezzo   U.M.(p)    Quantità   U.M.(q)
+Funghi IV gamma
+Altri funghi IV gamma                    Franco        Campania          19,135   €/conf.     110,00     conf.
+                                          arrivo
+Ortaggi da frutto IV gamma
+Peperoni IV gamma                        Franco        Campania          25,998   €/conf.     140,00     conf.
+                                          arrivo
+Ortaggi da seme o legumi IV gamma
+Altri ortaggi da seme IV gamma           Franco        Lombardia         5,640    €/conf.     20,00      conf.
+                                          arrivo
+Altri ortaggi da seme IV gamma           Franco         Toscana          9,024    €/conf.     20,00      conf.
+                                          arrivo
+LATTIERO - CASEARI                      Modalità       Regione           Prezzo   U.M.(p)    Quantità   U.M.(q)
+Altri formaggi vaccini a pasta filata
+Altri vaccini a pasta filata             Franco        Campania          4,300     €/kg       480,00      kg
+                                          arrivo
+ORTAGGI E FUNGHI                        Modalità       Regione           Prezzo   U.M.(p)    Quantità   U.M.(q)
+Agli
+Agli Altre Varietà                       Franco        Lombardia         5,500     €/kg       16,00       kg
+                                          arrivo
+Bietole
+Bietole Altre Varietà                    Franco        Piemonte          1,128     €/kg       75,00       kg
+                                          arrivo
+Bietole Altre Varietà                    Franco        Campania          0,668     €/kg      4300,00      kg
+                                        partenza
+Carciofi
+Carciofi Altre Varietà                   Franco        Lombardia         0,800    €/capol.    180,00     capol.
+                                          arrivo
+Carciofi Altre Varietà                   Franco        Campania          0,713    €/capol.   4032,00     capol.
+                                        partenza
+Cavolfiori
+Cavolfiore Altre Varietà                 Franco     Emilia Romagna       0,294     €/kg      3795,00      kg
+                                          arrivo
+Cavolfiore Altre Varietà                 Franco        Lombardia         0,665     €/kg      1956,41      kg
+                                          arrivo
+Cavolfiore Altre Varietà                 Franco        Piemonte          0,187     €/kg      5561,00      kg
+                                          arrivo
+Cavolfiore Altre Varietà                 Franco         Veneto           0,440     €/kg      1634,00      kg
+                                          arrivo
+Cavolfiore Altre Varietà                 Franco        Campania          0,508     €/kg      47923,73     kg
+                                        partenza
+Cavoli Broccoli
+Cavoli Broccoli                          Franco     Emilia Romagna       0,500     €/kg       288,60      kg
+                                          arrivo
+Cavoli Broccoli                          Franco        Lombardia         0,517     €/kg       191,00      kg
+                                          arrivo
+Cavoli Broccoli                          Franco        Piemonte          0,201     €/kg      2960,00      kg
+                                          arrivo
+Cavoli Broccoli                          Franco         Veneto           0,440     €/kg       792,00      kg
+                                          arrivo
+Cavoli Broccoli                          Franco        Campania          0,483     €/kg      9767,30      kg
+                                        partenza
+Cavoli Verza
+Cavoli Verza Altre Varietà               Franco     Emilia Romagna       0,284     €/kg      4151,00      kg
+                                          arrivo
+Cavoli Verza Altre Varietà               Franco        Lombardia         0,500     €/kg       549,20      kg
+                                          arrivo
+Cavoli Verza Altre Varietà               Franco        Piemonte          0,278     €/kg      4311,00      kg
+                                          arrivo
+Cavoli Verza Altre Varietà               Franco         Veneto           0,339     €/kg      18461,36     kg
+                                          arrivo
+Cavoli Verza Altre Varietà               Franco        Campania          0,413     €/kg      24855,00     kg
+                                        partenza
+Ceci Secchi
+Ceci Secchi                              Franco        Lombardia         3,000     €/kg       10,00       kg
+                                          arrivo
+Cicorie
+Cicoria Altre Varietà                    Franco        Campania          0,835     €/kg      23533,57     kg
+                                        partenza
+Cipolle
+Cipolle Altre Varietà                    Franco        Lombardia         0,750     €/kg       32,00       kg
+                                          arrivo
+Cipollotti
+Cipollotti Altre Varietà                                    Franco      Lombardia       1,600     €/kg       86,09       kg
+                                                             arrivo
+Cipollotti Altre Varietà                                    Franco      Campania        1,421     €/kg      632,99       kg
+                                                           partenza
+Fagioli
+Fagioli Altre Varietà                                       Franco      Lombardia       3,800     €/kg       30,00       kg
+                                                             arrivo
+Finocchi
+Finocchi Altre Varietà                                      Franco      Lombardia       0,900     €/kg       49,00       kg
+                                                             arrivo
+Finocchi Altre Varietà                                      Franco      Campania        0,664     €/kg     30352,00      kg
+                                                           partenza
+Indivie
+Indivie Altre Varietà                                       Franco      Lombardia       0,707     €/kg      3667,59      kg
+                                                             arrivo
+Indivie Altre Varietà                                       Franco      Piemonte        0,449     €/kg     12688,00      kg
+                                                             arrivo
+Indivie Altre Varietà                                       Franco       Veneto         0,453     €/kg      6513,54      kg
+                                                             arrivo
+Indivie Altre Varietà                                       Franco      Campania        0,609     €/kg     39861,99      kg
+                                                           partenza
+Lattughe
+Lattughe Altre Varietà                                      Franco      Lombardia       0,847     €/kg      6958,70      kg
+                                                             arrivo
+Lattughe Altre Varietà                                      Franco      Piemonte        0,489     €/kg      7415,00      kg
+                                                             arrivo
+Lattughe Altre Varietà                                      Franco       Veneto         0,518     €/kg     13288,00      kg
+                                                             arrivo
+Lattughe Altre Varietà                                      Franco      Campania        0,481     €/kg     78845,04      kg
+                                                           partenza
+Rucola
+Rucola Altre Varietà                                        Franco    Emilia Romagna    0,450     €/kg      255,55       kg
+                                                             arrivo
+Rucola Altre Varietà                                        Franco      Lombardia       0,508     €/kg      590,10       kg
+                                                             arrivo
+Rucola Altre Varietà                                        Franco      Piemonte        2,123     €/kg      469,00       kg
+                                                             arrivo
+Rucola Altre Varietà                                        Franco       Veneto         0,336     €/kg      1417,07      kg
+                                                             arrivo
+Rucola Altre Varietà                                        Franco      Campania        0,452     €/kg     238695,22     kg
+                                                           partenza
+Spinaci
+Spinaci Altre Varietà                                       Franco      Lombardia       0,534     €/kg       23,60       kg
+                                                             arrivo
+Spinaci Altre Varietà                                       Franco      Piemonte        1,008     €/kg      1068,00      kg
+                                                             arrivo
+Spinaci Altre Varietà                                       Franco       Veneto         0,440     €/kg      568,98       kg
+                                                             arrivo
+Spinaci Altre Varietà                                       Franco      Campania        0,535     €/kg     83024,85      kg
+                                                           partenza
+Zucche
+Zucche Altre Varietà                                        Franco      Lombardia       0,314     €/kg      864,00       kg
+                                                             arrivo
+Zucche Altre Varietà                                        Franco      Campania        0,467     €/kg      1374,00      kg
+                                                           partenza
+
+
+
+
+Quotazioni sui mercati a consegna differita
+
+
+CEREALI E COLTIVAZIONI INDUSTRIALI                         Modalità     Regione        Prezzo    U.M.(p)   Quantità    U.M.(q)
+Cereali minori
+Sorgo naz. uso zootec. mar-2016                             Franco    Emilia Romagna   160,000     €/t      600,00        t
+                                                           partenza
+Grano tenero
+Frumento tenero com. panificabile mar-2016 ago-2016         Franco       Toscana       181,000     €/t      500,00        t
+                                                             arrivo
+Frumento tenero com. panificabile mar-2016 mar-2017         Franco       Toscana       180,000     €/t      900,00        t
+                                                             arrivo
+Frumento tenero com. panificabile sup. apr-2016 feb-2017    Franco    Emilia Romagna   209,000     €/t      800,00        t
+                                                             arrivo
+Frumento tenero com. panificabile sup. mar-2016 dic-2016    Franco       Toscana       200,000     €/t      500,04        t
+                                                             arrivo
+Frumento tenero com. uso zootec. apr-2016 giu-2016          Franco       Veneto        174,000     €/t      1000,00       t
+                                                             arrivo
+Frumento tenero com. uso zootec. lug-2016 lug-2017          Franco       Veneto        166,000     €/t      1250,04       t
+                                                             arrivo
+Frumento tenero com. uso zootec. mag-2016 giu-2017     Franco       Veneto        175,000     €/t     12000,00      t
+                                                        arrivo
+Frumento tenero com. uso zootec. mar-2016 set-2016     Franco       Veneto        166,000     €/t     7200,00       t
+                                                        arrivo
+Frumento tenero com. uso zootec. set-2016 gen-2017     Franco    Emilia Romagna   175,000     €/t     1000,00       t
+                                                        arrivo
+Frumento tenero naz. panificabile ago-2016 ott-2016    Franco       Veneto        170,000     €/t      600,00       t
+                                                        arrivo
+Frumento tenero naz. uso zootec. feb-2016 mag-2016     Franco       Veneto        175,000     €/t     1000,02       t
+                                                        arrivo
+Granoturco secco
+Mais secco com. uso zootec. apr-2016 ago-2017          Franco      Lombardia      180,000     €/t      500,00       t
+                                                        arrivo
+Mais secco com. uso zootec. apr-2016 dic-2016          Franco      Lombardia      180,000     €/t      200,00       t
+                                                        arrivo
+Mais secco com. uso zootec. mar-2016 dic-2016          Franco    Emilia Romagna   168,000     €/t     36000,00      t
+                                                      partenza
+Mais secco com. uso zootec. mar-2016 lug-2016          Franco       Veneto        166,000     €/t     3600,00       t
+                                                      partenza
+Mais secco com. uso zootec. mar-2016 mag-2016          Franco    Emilia Romagna   168,000     €/t      900,00       t
+                                                      partenza
+Mais secco com. uso zootec. mar-2016 mag-2016          Franco       Veneto        166,000     €/t      900,00       t
+                                                      partenza
+Mais secco naz. uso zootec. mar-2016                   Franco       Veneto        163,000     €/t      900,00       t
+                                                      partenza
+Mais secco naz. uso zootec. mar-2016 mag-2016          Franco       Veneto        163,000     €/t      600,00       t
+                                                      partenza
+Semi di cotone
+Semi di cotone esteri mar-2016                         Franco        Sicilia      340,000     €/t      25,00        t
+                                                        arrivo
+Semi di cotone esteri mar-2016 lug-2017                Franco       Veneto        315,000     €/t      250,08       t
+                                                        arrivo
+Sottoprodotti Macinazione
+Crusca Tenero Rin apr-2016 ago-2016                    Franco      Lombardia      116,000     €/t      400,00       t
+                                                        arrivo
+Farinaccio Dur Rin feb-2016 lug-2016                   Franco      Lombardia      137,000     €/t      330,00       t
+                                                        arrivo
+FORAGGI E MANGIMI                                     Modalità     Regione        Prezzo    U.M.(p)   Quantità   U.M.(q)
+Erba medica disidr.
+Erba medica I qual. pellets mar-2016                   Franco    Emilia Romagna   203,000     €/t      30,00        t
+                                                      partenza
+Polpe barbabietola
+Polpe estere diam. fino 10mm apr-2016 apr-2017         Franco       Veneto        170,000     €/t      540,00       t
+                                                      partenza
+
