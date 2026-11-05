@@ -8,6 +8,8 @@ import datetime as dt
 import json
 import pathlib
 import sys
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -18,8 +20,18 @@ OUT = pathlib.Path(__file__).resolve().parent / "data" / "eu" / "prices.json"
 def get(path, **params):
     url = f"{API}/{path}" + ("?" + urllib.parse.urlencode(params, doseq=True) if params else "")
     req = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": "wine-index"})
-    with urllib.request.urlopen(req, timeout=180) as r:
-        return json.load(r)
+    for attempt in range(6):
+        try:
+            with urllib.request.urlopen(req, timeout=180) as r:
+                return json.load(r)
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                return []          # no data for that period
+            if e.code != 429 or attempt == 5:
+                raise
+            wait = int(e.headers.get("Retry-After") or 0) or 15 * (attempt + 1)
+            print(f"rate limited, waiting {wait}s", file=sys.stderr)
+            time.sleep(wait)
 
 
 def iso(s):
@@ -44,6 +56,7 @@ def main():
     rows = []
     # pull year by year so no single response is huge
     for year in range(2000, dt.date.today().year + 1):
+        time.sleep(3)
         try:
             recs = get("prices", years=year)
         except Exception as e:
