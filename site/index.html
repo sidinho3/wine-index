@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regional Wine Index</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f6f4f1; --surface: #fffefc; --border: #e6e2dc; --grid: #eeebe6;
+  --ink: #141312; --ink-2: #57534e; --ink-3: #8a857e;
+  --accent: #7a1f3d; --accent-soft: #f3e7eb;
+  --line: #2a78d6; --ref: #a8a39b;
+  --row-hover: #f8f5f1;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #121110; --surface: #1b1a19; --border: #2f2d2b; --grid: #282624;
+    --ink: #f1efeb; --ink-2: #c4bfb7; --ink-3: #8f8a82;
+    --accent: #e48aa6; --accent-soft: #3a2129;
+    --line: #3987e5; --ref: #6f6a63; --row-hover: #222120;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121110; --surface: #1b1a19; --border: #2f2d2b; --grid: #282624;
+  --ink: #f1efeb; --ink-2: #c4bfb7; --ink-3: #8f8a82;
+  --accent: #e48aa6; --accent-soft: #3a2129;
+  --line: #3987e5; --ref: #6f6a63; --row-hover: #222120;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.num { font-variant-numeric: tabular-nums; }
+header.top { border-bottom: 1px solid var(--border); background: var(--surface); }
+header.top .in { max-width: 1120px; margin: 0 auto; padding: 18px 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand svg { color: var(--accent); }
+.brand h1 { font: 600 20px/1.2 Georgia, "Times New Roman", serif; margin: 0; letter-spacing: .01em; }
+.brand p { margin: 0; font-size: 12px; color: var(--ink-3); }
+main { max-width: 1120px; margin: 0 auto; padding: 20px 16px 56px; }
+.seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.seg button { font: inherit; font-size: 13px; border: 0; background: none; color: var(--ink-2); padding: 6px 11px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 18px; }
+.hero { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.hero-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.hero h2 { margin: 0; font: 600 22px/1.2 Georgia, serif; }
+.hero .kind { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); }
+.big { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin-top: 6px; }
+.big .lvl { font-size: 36px; font-weight: 600; letter-spacing: -.01em; }
+.chg { color: var(--ink-2); font-size: 14px; }
+.chg b { font-weight: 600; color: var(--ink); }
+.legend { display: flex; gap: 16px; font-size: 12px; color: var(--ink-2); margin-top: 8px; }
+.legend i { display: inline-block; width: 18px; height: 0; border-top: 2px solid var(--line); vertical-align: middle; margin-right: 6px; }
+.legend i.ref { border-top: 2px dashed var(--ref); }
+.chart-wrap { position: relative; margin-top: 6px; }
+svg.chart { display: block; width: 100%; height: auto; overflow: visible; }
+.axis text { fill: var(--ink-3); font-size: 11px; }
+.gl { stroke: var(--grid); }
+.base { stroke: var(--ink-3); stroke-dasharray: 2 3; }
+.tip { position: absolute; pointer-events: none; display: none; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 10px; font-size: 12px; box-shadow: 0 4px 16px rgb(0 0 0 / .12); min-width: 160px; }
+.tip b { display: block; margin-bottom: 4px; }
+.tip div { display: flex; justify-content: space-between; gap: 14px; color: var(--ink-2); }
+.tip div span:last-child { color: var(--ink); }
+.note { font-size: 13px; color: var(--ink-2); background: var(--accent-soft); border-radius: 8px; padding: 10px 12px; margin-top: 10px; }
+h3 { margin: 0 0 10px; font-size: 15px; }
+.table-scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { padding: 8px 10px; text-align: right; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--ink-3); font-weight: 600; font-size: 12px; position: sticky; top: 0; background: var(--surface); }
+th.sortable { cursor: pointer; } th.sortable:hover { color: var(--ink); }
+tr.idx { cursor: pointer; }
+tr.idx:hover td { background: var(--row-hover); }
+tr.idx.sel td { background: var(--accent-soft); }
+tr.idx.sel td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+tr.sec td { color: var(--ink-3); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; padding-top: 14px; border-bottom: 0; }
+td .nm { font-weight: 500; }
+.spark { vertical-align: middle; }
+.spark path { fill: none; stroke: var(--ink-2); stroke-width: 1.5; }
+.up::before { content: "▲ "; font-size: 9px; } .down::before { content: "▼ "; font-size: 9px; }
+.muted { color: var(--ink-3); }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 760px) { .two { grid-template-columns: 1fr; } .big .lvl { font-size: 30px; } }
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+input[type=search] { font: inherit; font-size: 13px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink); min-width: 0; width: 240px; max-width: 100%; }
+.bottles { max-height: 460px; overflow: auto; }
+td.wine { white-space: normal; min-width: 220px; }
+td.wine small { display: block; color: var(--ink-3); }
+footer { color: var(--ink-3); font-size: 12px; line-height: 1.6; }
+.empty { padding: 40px 0; text-align: center; color: var(--ink-3); }
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 2h10l-.6 6.2a4.4 4.4 0 0 1-8.8 0L7 2Z"/><path d="M12 12.6V21M8 21h8M7.4 6h9.2"/></svg>
+    <div><h1>Regional Wine Index</h1><p id="updated"></p></div>
+  </div>
+  <div class="seg" role="group" aria-label="Price tier" id="tier">
+    <button data-t="all" aria-pressed="true">All bottles</button><button data-t="premium">Premium</button>
+  </div>
+</div></header>
+
+<main>
+  <section class="card hero" aria-live="polite">
+    <div class="hero-head">
+      <div>
+        <div class="kind" id="h-kind"></div>
+        <h2 id="h-name"></h2>
+        <div class="big"><span class="lvl num" id="h-lvl"></span><span class="chg num" id="h-chg"></span></div>
+      </div>
+      <div class="seg" role="group" aria-label="Time range" id="range">
+        <button data-w="13">3M</button><button data-w="26">6M</button><button data-w="52">1Y</button><button data-w="0" aria-pressed="true">All</button>
+      </div>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="chart-wrap" id="chart"></div>
+    <div class="note" id="note" hidden></div>
+  </section>
+
+  <section class="card">
+    <h3>Indices</h3>
+    <div class="table-scroll"><table id="indices"></table></div>
+  </section>
+
+  <div class="two">
+    <section class="card"><h3>Biggest risers, last 4 weeks</h3><div class="table-scroll" id="risers"></div></section>
+    <section class="card"><h3>Biggest fallers, last 4 weeks</h3><div class="table-scroll" id="fallers"></div></section>
+  </div>
+
+  <section class="card">
+    <div class="toolbar"><h3 id="b-title" style="margin:0">Bottles</h3><input type="search" id="q" placeholder="Search wine, producer, vintage" aria-label="Search bottles"></div>
+    <div class="table-scroll bottles" id="bottles"></div>
+  </section>
+
+  <footer id="foot"></footer>
+</main>
+
+<script src="data.js"></script>
+<script>
+const D = window.WINE_DATA;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const f2 = v => v.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const f1 = v => v.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const eur = v => "€" + f2(v);
+const dfmt = s => new Date(s + "T00:00:00").toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+const pct = (a, b) => (a != null && b) ? (a / b - 1) * 100 : null;
+const chg = v => v == null ? '<span class="muted">–</span>'
+  : `<span class="${v > 0.005 ? "up" : v < -0.005 ? "down" : ""}">${v > 0 ? "+" : ""}${f1(v)}%</span>`;
+
+let sortKey = "price", sortDir = -1;
+let state = { g: "all", tier: "all", weeks: 0, q: "" };
+try { Object.assign(state, JSON.parse(localStorage.getItem("wine-index") || "{}")); } catch (e) {}
+const save = () => { try { localStorage.setItem("wine-index", JSON.stringify({ g: state.g, tier: state.tier, weeks: state.weeks })); } catch (e) {} };
+
+if (!D) {
+  document.querySelector("main").innerHTML = '<p class="empty">No data yet. Run <code>python wine_index.py</code> to pull the first price list.</p>';
+} else {
+  if (!D.groups.some(g => g.id === state.g)) state.g = "all";
+  $("updated").textContent = `${D.dates.length} weekly snapshot${D.dates.length > 1 ? "s" : ""} · last pull ${dfmt(D.dates.at(-1))}`;
+  $("tier").querySelectorAll("button").forEach(b => b.onclick = () => { state.tier = b.dataset.t; save(); render(); });
+  $("range").querySelectorAll("button").forEach(b => b.onclick = () => { state.weeks = +b.dataset.w; save(); render(); });
+  $("q").oninput = e => { state.q = e.target.value.toLowerCase(); renderBottles(); };
+  $("foot").innerHTML = `Source: ${esc(D.source)}, Finland's national wine retailer. Shelf prices in euros incl. VAT, normalised to a 750ml bottle.
+    Each index starts at 100 on ${dfmt(D.dates[0])} and is chained week to week using only bottles listed in both weeks (geometric mean of price changes),
+    so new listings and delistings don't move it. Premium = bottles at €${D.premiumEur}+ per 750ml. Built ${esc(D.updated)}.`;
+  addEventListener("resize", () => renderChart());
+  render();
+}
+
+function group(id) { return D.groups.find(g => g.id === id); }
+function ser(g) { return g.series[state.tier]; }
+function back(arr, w) { const i = arr.length - 1 - w; return i >= 0 ? arr[i] : null; }
+function ytdBase(arr) {
+  const y = D.dates.at(-1).slice(0, 4); const i = D.dates.findIndex(d => d.startsWith(y));
+  return i > 0 ? arr[i - 1] : arr[0];
+}
+
+function render() {
+  $("tier").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.t === state.tier));
+  $("range").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", +b.dataset.w === state.weeks));
+  const g = group(state.g), s = ser(g), ix = s.index;
+  $("h-kind").textContent = g.kind === "summary" ? "Headline index" : g.kind === "region" ? "Regional index" : "Country index";
+  $("h-name").textContent = g.name + (state.tier === "premium" ? " · Premium" : "");
+  $("h-lvl").textContent = f2(ix.at(-1));
+  $("h-chg").innerHTML = `<b>${chg(pct(ix.at(-1), back(ix, 1)))}</b> week · <b>${chg(pct(ix.at(-1), back(ix, 4)))}</b> month · ${s.count.at(-1)} bottles · median ${s.median.at(-1) != null ? eur(s.median.at(-1)) : "–"}`;
+  const note = $("note");
+  if (D.dates.length < 2) { note.hidden = false; note.textContent = "The index starts at 100 today. Movements appear after the next weekly pull, and the history builds from there."; }
+  else note.hidden = true;
+  renderChart(); renderIndexTable(); renderMovers(); renderBottles();
+}
+
+function renderChart() {
+  const el = $("chart"), g = group(state.g), all = group("all");
+  const n = D.dates.length, start = state.weeks ? Math.max(0, n - 1 - state.weeks) : 0;
+  const dates = D.dates.slice(start);
+  const main = ser(g).index.slice(start);
+  const ref = g.id === "all" ? null : ser(all).index.slice(start);
+  $("legend").innerHTML = ref ? `<span><i></i>${esc(g.name)}</span><span><i class="ref"></i>All wine</span>` : "";
+  if (dates.length < 2) { el.innerHTML = '<p class="empty">Chart appears after the second weekly snapshot.</p>'; return; }
+  const W = el.clientWidth || 900, H = Math.max(220, Math.min(340, W * 0.38)), narrow = W < 560;
+  const m = { t: 10, r: 14, b: 26, l: 44 }, iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const vals = main.concat(ref || [], [100]);
+  let lo = Math.min(...vals), hi = Math.max(...vals); const pad = Math.max((hi - lo) * 0.12, 0.5); lo -= pad; hi += pad;
+  const ticks = nice(lo, hi, 5); lo = ticks[0]; hi = ticks.at(-1);
+  const x = i => m.l + i / (dates.length - 1) * iw, y = v => m.t + ih - (v - lo) / (hi - lo) * ih;
+  const path = a => a.map((v, i) => (i ? "L" : "M") + x(i).toFixed(1) + " " + y(v).toFixed(1)).join("");
+  let s = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(g.name)} index over time"><g class="axis">`;
+  for (const t of ticks) s += `<line class="gl" x1="${m.l}" x2="${m.l + iw}" y1="${y(t)}" y2="${y(t)}"/><text x="${m.l - 8}" y="${y(t) + 4}" text-anchor="end">${t}</text>`;
+  const nx = narrow ? 3 : 6, step = Math.max(1, Math.round((dates.length - 1) / nx));
+  for (let i = 0; i < dates.length; i += step)
+    s += `<text x="${x(i)}" y="${H - 6}" text-anchor="${i === 0 ? "start" : "middle"}">${new Date(dates[i] + "T00:00:00").toLocaleDateString(undefined, { day: "numeric", month: "short" })}</text>`;
+  s += `</g>`;
+  if (lo < 100 && hi > 100) s += `<line class="base" x1="${m.l}" x2="${m.l + iw}" y1="${y(100)}" y2="${y(100)}"/>`;
+  if (ref) s += `<path d="${path(ref)}" fill="none" stroke="var(--ref)" stroke-width="2" stroke-dasharray="5 4"/>`;
+  s += `<path d="${path(main)}" fill="none" stroke="var(--line)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+  s += `<line id="cx" y1="${m.t}" y2="${m.t + ih}" stroke="var(--ink-3)" stroke-dasharray="3 3" style="display:none"/><g id="cd"></g>`;
+  s += `<rect id="hit" x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent"/></svg><div class="tip" id="tip"></div>`;
+  el.innerHTML = s;
+  const svg = el.querySelector("svg"), tip = $("tip"), cx = $("cx"), cd = $("cd");
+  const move = ev => {
+    const r = svg.getBoundingClientRect(), px = (ev.clientX - r.left) * W / r.width;
+    const i = Math.max(0, Math.min(dates.length - 1, Math.round((px - m.l) / iw * (dates.length - 1))));
+    cx.setAttribute("x1", x(i)); cx.setAttribute("x2", x(i)); cx.style.display = "";
+    cd.innerHTML = `<circle cx="${x(i)}" cy="${y(main[i])}" r="4.5" fill="var(--line)" stroke="var(--surface)" stroke-width="2"/>` +
+      (ref ? `<circle cx="${x(i)}" cy="${y(ref[i])}" r="4" fill="var(--ref)" stroke="var(--surface)" stroke-width="2"/>` : "");
+    tip.innerHTML = `<b>${dfmt(dates[i])}</b><div><span>${esc(g.name)}</span><span class="num">${f2(main[i])}</span></div>` +
+      (ref ? `<div><span>All wine</span><span class="num">${f2(ref[i])}</span></div>` : "");
+    tip.style.display = "block";
+    const sx = x(i) * r.width / W, tw = tip.offsetWidth;
+    tip.style.left = (sx + 14 + tw > r.width ? sx - tw - 14 : sx + 14) + "px"; tip.style.top = "8px";
+  };
+  const hit = $("hit");
+  hit.addEventListener("pointermove", move); hit.addEventListener("pointerdown", move);
+  hit.addEventListener("pointerleave", () => { cx.style.display = "none"; cd.innerHTML = ""; tip.style.display = "none"; });
+}
+
+function nice(lo, hi, n) {
+  const raw = (hi - lo) / n, mag = 10 ** Math.floor(Math.log10(raw));
+  const st = [1, 2, 2.5, 5, 10].map(k => k * mag).find(v => v >= raw);
+  const out = []; for (let v = Math.floor(lo / st) * st; v <= hi + st * 0.999; v += st) out.push(+v.toFixed(4));
+  return out;
+}
+
+function spark(arr) {
+  const a = arr.slice(-26); if (a.length < 2) return "";
+  const lo = Math.min(...a), hi = Math.max(...a), w = 80, h = 22;
+  const d = a.map((v, i) => (i ? "L" : "M") + (i / (a.length - 1) * w).toFixed(1) + " " + (hi === lo ? h / 2 : h - 2 - (v - lo) / (hi - lo) * (h - 4)).toFixed(1)).join("");
+  return `<svg class="spark" width="${w}" height="${h}" aria-hidden="true"><path d="${d}"/></svg>`;
+}
+
+function renderIndexTable() {
+  const sec = { summary: "Headline", region: "Regions", country: "Countries" };
+  let h = `<thead><tr><th>Index</th><th>Level</th><th>1W</th><th>1M</th><th>3M</th><th>YTD</th><th>1Y</th><th>Bottles</th><th>Median 750ml</th><th>Trend</th></tr></thead><tbody>`;
+  let last = null;
+  const order = ["summary", "region", "country"];
+  const gs = D.groups.slice().sort((a, b) => order.indexOf(a.kind) - order.indexOf(b.kind) ||
+    (a.kind === "country" ? ser(b).count.at(-1) - ser(a).count.at(-1) : 0));
+  for (const g of gs) {
+    const s = ser(g), ix = s.index;
+    if (s.count.at(-1) < 5) continue;
+    if (g.kind !== last) { h += `<tr class="sec"><td colspan="10">${sec[g.kind]}</td></tr>`; last = g.kind; }
+    h += `<tr class="idx${g.id === state.g ? " sel" : ""}" data-g="${esc(g.id)}" tabindex="0">
+      <td><span class="nm">${esc(g.name)}</span></td><td class="num">${f2(ix.at(-1))}</td>
+      <td class="num">${chg(pct(ix.at(-1), back(ix, 1)))}</td><td class="num">${chg(pct(ix.at(-1), back(ix, 4)))}</td>
+      <td class="num">${chg(pct(ix.at(-1), back(ix, 13)))}</td><td class="num">${chg(pct(ix.at(-1), ytdBase(ix)))}</td>
+      <td class="num">${chg(pct(ix.at(-1), back(ix, 52)))}</td><td class="num">${s.count.at(-1)}</td>
+      <td class="num">${s.median.at(-1) != null ? eur(s.median.at(-1)) : "–"}</td><td>${spark(ix)}</td></tr>`;
+  }
+  $("indices").innerHTML = h + "</tbody>";
+  $("indices").querySelectorAll("tr.idx").forEach(tr => {
+    const go = () => { state.g = tr.dataset.g; save(); render(); scrollTo({ top: 0, behavior: "smooth" }); };
+    tr.onclick = go; tr.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } };
+  });
+}
+
+function inScope(b) {
+  if (!b.g.includes(state.g)) return false;
+  return state.tier === "all" || b.price * 0.75 / b.s >= D.premiumEur;
+}
+function wineCell(b) {
+  return `<td class="wine">${esc(b.n)}<small>${esc([b.p, b.v, b.r || b.c].filter(Boolean).join(" · "))}${b.s !== 0.75 ? " · " + f2(b.s).replace(/0$/, "") + " l" : ""}</small></td>`;
+}
+
+function renderMovers() {
+  const mv = D.bottles.filter(b => inScope(b) && b.mago).map(b => ({ b, c: pct(b.price, b.mago) })).filter(o => Math.abs(o.c) > 0.001);
+  const tbl = list => list.length ? `<table><thead><tr><th>Wine</th><th>Was</th><th>Now</th><th>Change</th></tr></thead><tbody>` +
+    list.map(o => `<tr>${wineCell(o.b)}<td class="num">${eur(o.b.mago)}</td><td class="num">${eur(o.b.price)}</td><td class="num">${chg(o.c)}</td></tr>`).join("") + "</tbody></table>"
+    : '<p class="muted" style="font-size:13px">No price changes in the last 4 weeks.</p>';
+  $("risers").innerHTML = tbl(mv.filter(o => o.c > 0).sort((a, b) => b.c - a.c).slice(0, 8));
+  $("fallers").innerHTML = tbl(mv.filter(o => o.c < 0).sort((a, b) => a.c - b.c).slice(0, 8));
+}
+
+function renderBottles() {
+  const g = group(state.g);
+  let list = D.bottles.filter(inScope);
+  if (state.q) list = list.filter(b => [b.n, b.p, b.v, b.r, b.c].join(" ").toLowerCase().includes(state.q));
+  const val = { name: b => b.n.toLowerCase(), price: b => b.price * 0.75 / b.s, wk: b => pct(b.price, b.prev) ?? -1e9, yr: b => pct(b.price, b.yago) ?? -1e9 };
+  list.sort((a, b) => { const x = val[sortKey](a), y = val[sortKey](b); return (x > y ? 1 : x < y ? -1 : 0) * sortDir; });
+  $("b-title").textContent = `Bottles in ${g.name} (${list.length})`;
+  const arrow = k => sortKey === k ? (sortDir > 0 ? " ↑" : " ↓") : "";
+  $("bottles").innerHTML = `<table><thead><tr><th class="sortable" data-k="name">Wine${arrow("name")}</th><th>Price</th><th class="sortable" data-k="price">Per 750ml${arrow("price")}</th><th class="sortable" data-k="wk">1W${arrow("wk")}</th><th class="sortable" data-k="yr">1Y${arrow("yr")}</th></tr></thead><tbody>` +
+    list.slice(0, 400).map(b => `<tr>${wineCell(b)}<td class="num">${eur(b.price)}</td><td class="num">${eur(b.price * 0.75 / b.s)}</td><td class="num">${chg(pct(b.price, b.prev))}</td><td class="num">${chg(pct(b.price, b.yago))}</td></tr>`).join("") +
+    "</tbody></table>" + (list.length > 400 ? `<p class="muted" style="font-size:12px">Showing 400 of ${list.length}. Search to narrow.</p>` : "");
+  $("bottles").querySelectorAll("th.sortable").forEach(th => th.onclick = () => {
+    const k = th.dataset.k; if (sortKey === k) sortDir *= -1; else { sortKey = k; sortDir = k === "name" ? 1 : -1; } renderBottles();
+  });
+}
+</script>
+</body>
+</html>
