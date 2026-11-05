@@ -1,23 +1,26 @@
-"""Temporary helper: probe FranceAgriMer VISIONet document listing."""
+"""Temporary helper: list and download FranceAgriMer VISIONet wine price files."""
 import http.cookiejar, pathlib, re, urllib.parse, urllib.request
 OUT = pathlib.Path("raw"); OUT.mkdir(exist_ok=True)
 op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
 op.addheaders = [("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) wine-index research")]
 B = "https://visionet.franceagrimer.fr/Pages/"
-def go(name, u, data=None):
+def go(u, data=None):
+    with op.open(u, data=urllib.parse.urlencode(data).encode() if data else None, timeout=90) as r:
+        return r.read()
+go(B + "Statistiques.aspx?sousmenu=productions%20vegetales")
+for root, url in [("Statistiques", "Statistiques/productions vegetales/vin et cidriculture/prix moyens/prix moyens vrac VSIG et IGP"),
+                  ("SeriesChronologiques", "SeriesChronologiques/productions vegetales/vin et cidriculture/prix moyens/prix moyens vrac communiqués à la Commission européenne")]:
     try:
-        with op.open(u, data=urllib.parse.urlencode(data).encode() if data else None, timeout=60) as r:
-            b = r.read()
-        (OUT / name).write_bytes(b); print("OK ", name, len(b)); return b
+        b = go(B + "SeriesChronologiquesDetail.aspx", {"niveau": "1", "dossierRacine": root, "menuId": "", "menuTitre": url.rsplit("/", 1)[1], "menuUrl": url, "niveauMax": "False"})
     except Exception as e:
-        print("ERR", name, e); return b""
-go("home", B + "Statistiques.aspx?sousmenu=productions%20vegetales")
-for page, root, url in [
-    ("StatistiquesDetail.aspx", "Statistiques", "Statistiques/productions vegetales/vin et cidriculture/prix moyens/prix moyens vrac VSIG et IGP"),
-    ("SeriesChronologiquesDetail.aspx", "SeriesChronologiques", "SeriesChronologiques/productions vegetales/vin et cidriculture/prix moyens/prix moyens vrac communiqués à la Commission européenne"),
-    ("SeriesChronologiquesDetail.aspx", "SeriesChronologiques", "SeriesChronologiques/productions vegetales/vin et cidriculture/prix moyens"),
-]:
-    b = go(page + "_" + url.rsplit("/", 1)[1][:30], B + page, {"niveau": "1", "dossierRacine": root, "menuId": "", "menuTitre": url.rsplit("/", 1)[1], "menuUrl": url, "niveauMax": "False"})
-    for m in sorted(set(re.findall(rb'fileurl="?([^"\' >]+)', b)) | set(re.findall(rb'(/[^"\' <>]+\.(?:xlsx?|csv|zip|pdf))', b, re.I)))[:30]:
-        print("   FILE", m.decode(errors="replace"))
-    print(b[:1500].decode(errors="replace").replace("\n", " ")[:1500])
+        print("ERR list", root, e); continue
+    files = sorted(set(m.decode() for m in re.findall(rb'fileurl=([^"\'&<> ]+\.(?:xlsx?|csv|zip))', b, re.I)))
+    print(root, len(files), "files")
+    for f in files:
+        name = urllib.parse.unquote(f).rsplit("/", 1)[1]
+        print("  ", name)
+        try:
+            data = go(B + "OpenDocument.aspx?fileurl=" + f + "&telechargersanscomptage=oui")
+            (OUT / name).write_bytes(data); print("     saved", len(data), data[:8])
+        except Exception as e:
+            print("     ERR", e)
