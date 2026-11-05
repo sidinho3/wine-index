@@ -78,6 +78,9 @@ def label(m):
 
 def main():
     rows = json.loads(SRC.read_text(encoding="utf-8"))["rows"]
+    # extra sources (later rows win for the same series and month)
+    import regional_sources
+    rows += regional_sources.all_rows()
     series = {}
     for r in rows:
         key = f'{r["ms"]}|{r["wine"]}'

@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["eu_index.py", "site/**"]
+    paths: ["eu_index.py", "regional_sources.py", "site/**", "data/raw/**"]
 
 permissions:
   contents: write
@@ -25,6 +25,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - run: pip install -q xlrd
       - name: Fetch EU wine price history
         if: github.event_name != 'push'
         run: python eu_fetch.py

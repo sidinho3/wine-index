@@ -5,6 +5,8 @@ Sources (all public bulletins, fetched politely, one request per second):
   asti    - Camera di Commercio Alessandria-Asti, weekly wine quotations (Piedmont)
   firenze - Camera di Commercio di Firenze, weekly wholesale price list (Tuscany)
   rioja   - Gobierno de La Rioja, weekly agricultural price sheet (Rioja)
+  franceagrimer - FranceAgriMer monthly French bulk prices reported to the EU (more
+            up to date than the EU's own API); the latest workbook is kept as-is
 
 Each PDF is converted with `pdftotext -layout` and saved as text under
 data/raw/<source>/; files already saved are skipped, so reruns only fetch new weeks.
@@ -110,8 +112,33 @@ def rioja():
     print(f"rioja: {n} new")
 
 
+def franceagrimer():
+    base = "https://visionet.franceagrimer.fr/Pages/"
+    menu = ("SeriesChronologiques/productions vegetales/vin et cidriculture/prix moyens/"
+            "prix moyens vrac communiqués à la Commission européenne")
+    get(base + "Statistiques.aspx?sousmenu=productions%20vegetales")   # starts a session
+    body = urllib.parse.urlencode({"niveau": "1", "dossierRacine": "SeriesChronologiques", "menuId": "",
+                                   "menuTitre": menu.rsplit("/", 1)[1], "menuUrl": menu,
+                                   "niveauMax": "False"}).encode()
+    time.sleep(1)
+    with opener.open(base + "SeriesChronologiquesDetail.aspx", data=body, timeout=90) as r:
+        html = r.read()
+    files = sorted(set(re.findall(rb'fileurl=([^"\'&<> ]+COTATION_UE[^"\'&<> ]*\.xls)', html)))
+    if not files:
+        print("franceagrimer: no files listed"); return
+    latest = files[-1].decode()                      # names end in -Cyy-yy, so the last is newest
+    data = get(base + "OpenDocument.aspx?fileurl=" + latest + "&telechargersanscomptage=oui")
+    out = RAW / "franceagrimer" / "cotation_ue.xls"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    if not out.exists() or out.read_bytes() != data:
+        out.write_bytes(data)
+        print(f"franceagrimer: updated from {urllib.parse.unquote(latest).rsplit('/', 1)[1]}")
+    else:
+        print("franceagrimer: unchanged")
+
+
 if __name__ == "__main__":
-    for fn in (asti, firenze, rioja):
+    for fn in (franceagrimer, asti, firenze, rioja):
         if len(sys.argv) > 1 and fn.__name__ not in sys.argv[1:]:
             continue
         try:
