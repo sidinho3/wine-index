@@ -119,7 +119,8 @@ def asti():
                     break
         for name, vals in found.items():
             rows.append({"ms": "IT", "wine": name + " (Asti)", "unit": "Euro / HL.", "date": date,
-                         "price": round(_median(vals), 2), "region": "Piedmont"})
+                         "price": round(_median(vals), 2), "region": "Piedmont", "tier": "PDO",
+                         "colour": "White" if re.search(r"cortese|chardonnay", name, re.I) else "Red"})
     return rows
 
 
@@ -161,7 +162,9 @@ def firenze():
                     break
         for name, vals in found.items():
             rows.append({"ms": "IT", "wine": name + " (Florence)", "unit": "Euro / HL.", "date": date,
-                         "price": round(_median(vals), 2), "region": "Tuscany"})
+                         "price": round(_median(vals), 2), "region": "Tuscany",
+                         "tier": "PGI" if name.startswith("Toscano") else "PDO",
+                         "colour": "White" if "bianco" in name else "Red"})
     return rows
 
 

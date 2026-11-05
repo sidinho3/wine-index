@@ -24,6 +24,9 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent
 SRC = ROOT / "data" / "eu" / "prices.json"
 OUT = ROOT / "site" / "eu-data.js"
+# cross-country indices start when the EU data does, so a single early regional
+# source doesn't stand in for the whole EU
+CORE_START = "2009-08"
 CARRY = 6                # months a series' last price is carried forward
 MIN_MONTHS = 12          # ignore series with fewer monthly prices than this
 COUNTRY = {"FR": "France", "IT": "Italy", "ES": "Spain", "DE": "Germany"}
@@ -84,7 +87,8 @@ def main():
     series = {}
     for r in rows:
         key = f'{r["ms"]}|{r["wine"]}'
-        s = series.setdefault(key, {"ms": r["ms"], "wine": r["wine"], "unit": r["unit"], "obs": {}})
+        s = series.setdefault(key, {"ms": r["ms"], "wine": r["wine"], "unit": r["unit"], "obs": {},
+                                    "meta": {k: r[k] for k in ("region", "tier", "colour") if r.get(k)}})
         if r["price"] and r["price"] > 0:
             s["obs"][r["date"][:7]] = r["price"]
     series = {k: s for k, s in series.items() if len(s["obs"]) >= MIN_MONTHS}
@@ -93,7 +97,9 @@ def main():
     for s in series.values():
         ks = sorted(s["obs"])
         s["raw"] = dict(s["obs"])
-        s["obs"] = {m: statistics.median([s["raw"][x] for x in ks[max(0, i - 2): i + 1]]) for i, m in enumerate(ks)}
+        # only prices within CARRY months count, so a price after a long gap isn't masked
+        s["obs"] = {m: statistics.median([s["raw"][x] for x in ks[max(0, i - 2): i + 1] if mi(m) - mi(x) <= CARRY])
+                    for i, m in enumerate(ks)}
 
     first = min(min(s["obs"]) for s in series.values())
     last = max(max(s["obs"]) for s in series.values())
@@ -104,7 +110,10 @@ def main():
         m += 1
 
     for k, s in series.items():
-        s["tier"], s["colour"], s["area"] = tier(s["ms"], s["wine"]), colour(s["wine"]), area(s["ms"], s["wine"])
+        meta = s.get("meta", {})
+        s["tier"] = meta.get("tier") or tier(s["ms"], s["wine"])
+        s["colour"] = meta.get("colour") or colour(s["wine"])
+        s["area"] = meta.get("region") or area(s["ms"], s["wine"])
         s["country"] = COUNTRY.get(s["ms"], s["ms"])
 
     defs = [("all", "All EU bulk wine", "summary", lambda s: True)]
@@ -133,6 +142,9 @@ def main():
         for s in mem:
             v, last_i, row = None, None, []
             for i, mth in enumerate(months):
+                if kind in ("summary", "tier", "colour") and mth < CORE_START:
+                    row.append(None)
+                    continue
                 if mth in s["obs"]:
                     v, last_i = s["obs"][mth], i
                 row.append(v if last_i is not None and i - last_i <= CARRY else None)
@@ -141,7 +153,7 @@ def main():
         # it sits at the index level of the series already present (no chain drift)
         idx, cnt, scale = [], [], {}
         for i, mth in enumerate(months):
-            cnt.append(sum(1 for s in mem if mth in s["obs"]))
+            cnt.append(sum(1 for s in mem if mth in s["obs"] and val[id(s)][i] is not None))
             avail = [s for s in mem if val[id(s)][i] is not None]
             known = [s for s in avail if id(s) in scale]
             if known:

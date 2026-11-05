@@ -74,9 +74,11 @@ if (!D) {
   $("updated").textContent = `EU bulk wine prices · ${mfmt(D.months[0])} to ${mfmt(D.months.at(-1))}`;
   $("range").querySelectorAll("button").forEach(b => b.onclick = () => { state.months = +b.dataset.m; save(); render(); });
   $("q").oninput = e => { state.q = e.target.value.toLowerCase(); renderSeries(); };
-  $("foot").innerHTML = `Source: <a href="${D.sourceUrl}" style="color:inherit">${esc(D.source)}</a>. Producer (bulk) prices in euros per hectolitre, about one price per month for each series.
-    Each composite index is the equal-weighted geometric mean of its series, smoothed with a 3-month median to remove one-off spikes. A series joining later is scaled to the index level of that month, so it doesn't cause a jump.
-    Every index starts at 100 in its first month. Data last fetched ${esc(D.fetched || "")}; the page refreshes weekly, but the EU publishes with a lag of several months.`;
+  $("foot").innerHTML = `Sources: <a href="${D.sourceUrl}" style="color:inherit">European Commission Agri-food Data Portal</a> (France, Germany, Italy, Spain);
+    FranceAgriMer (France, more recent months); Camera di Commercio Alessandria-Asti weekly wine quotations (Piedmont, from 2005);
+    Camera di Commercio di Firenze weekly wholesale price list (Tuscany). All are producer (bulk) prices, converted to euros per hectolitre and taken monthly.
+    Each composite index is the equal-weighted geometric mean of its series, smoothed with a 3-month median to remove one-off spikes; a series joining later is scaled to the index level of that month, so it doesn't cause a jump.
+    Every index starts at 100 in its first month; the cross-country indices start in Aug 2009, and Italy before 2017 reflects Piedmont only. Data last fetched ${esc(D.fetched || "")}.`;
   addEventListener("resize", () => renderChart());
   render();
 }
