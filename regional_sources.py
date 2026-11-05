@@ -66,9 +66,108 @@ def franceagrimer():
     return rows
 
 
+# ---------------------------------------------------------------- Piedmont (Asti)
+
+ASTI_SERIES = [  # (series name, pattern on the start of the line)
+    ("Barbera d'Asti", r"barbera d.asti\b(?!.*superiore)"),
+    ("Barbera del Monferrato", r"barbera del monferrato\b(?!.*superiore)"),
+    ("Piemonte Barbera", r"piemonte (d\.?o\.?c\.? )?barbera"),
+    ("Nizza", r"nizza\b"),
+    ("Dolcetto d'Asti", r"dolcetto d.asti"),
+    ("Grignolino d'Asti", r"grignolino d.asti"),
+    ("Freisa d'Asti", r"freisa d.asti"),
+    ("Ruchè", r"ruch[eè]"),
+    ("Cortese dell'Alto Monferrato", r"cortese dell.alto monferrato"),
+    ("Piemonte Chardonnay", r"piemonte (d\.?o\.?c\.? )?chardonnay"),
+]
+MESI = {m: i for i, m in enumerate(["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio",
+                                    "agosto", "settembre", "ottobre", "novembre", "dicembre"], 1)}
+NUM = r"(\d+,\d+)\*?"
+
+
+def _median(v):
+    v = sorted(v)
+    n = len(v)
+    return (v[n // 2] + v[(n - 1) // 2]) / 2
+
+
+def asti():
+    rows = []
+    for f in sorted((RAW / "asti").glob("*.txt")):
+        m = re.match(r"(\d{4}-\d{2}-\d{2})", f.stem)
+        if m:
+            date = m.group(1)
+        else:
+            m = re.search(r"(\d{1,2})-([a-z]+)-(\d{4})", f.stem.lower())
+            if not m or m.group(2) not in MESI:
+                continue
+            date = f"{m.group(3)}-{MESI[m.group(2)]:02d}-{int(m.group(1)):02d}"
+        found = {}
+        for line in f.read_text(encoding="utf-8", errors="replace").splitlines():
+            low = line.strip().lower()
+            if not re.search(r"\blitro\b", low) or low.startswith(("mosto", "barbera atta", "uve")):
+                continue
+            nums = [float(x.replace(",", ".")) for x in re.findall(NUM, line.split("itro", 1)[1])]
+            if len(nums) < 2:
+                continue
+            lo, hi = nums[-2], nums[-1]          # the latest period's min and max
+            if not (0.2 <= lo <= hi <= 30):
+                continue
+            for name, pat in ASTI_SERIES:
+                if re.match(pat, low):
+                    found.setdefault(name, []).append((lo + hi) / 2 * 100)   # €/litre -> €/hl
+                    break
+        for name, vals in found.items():
+            rows.append({"ms": "IT", "wine": name + " (Asti)", "unit": "Euro / HL.", "date": date,
+                         "price": round(_median(vals), 2), "region": "Piedmont"})
+    return rows
+
+
+# ---------------------------------------------------------------- Tuscany (Florence)
+
+FI_SERIES = [
+    ("Chianti Classico", r"chianti classico"),
+    ("Chianti", r"chianti\b"),
+    ("Toscano rosso", r"(vino )?toscano rosso"),
+    ("Toscano Sangiovese", r"(vino )?toscano sangiovese"),
+    ("Toscano bianco", r"(vino )?toscano bianco"),
+]
+
+
+def firenze():
+    rows = []
+    for f in sorted((RAW / "firenze").glob("*.txt")):
+        text = f.read_text(encoding="utf-8", errors="replace")
+        m = re.search(r"(\d{1,2})[./](\d{1,2})[./](20\d{2})\s*$", text[:3000], re.M) or \
+            re.search(r"al\s+(\d{1,2})[./](\d{1,2})[./](20\d{2})", text[:3000])
+        if m:
+            date = f"{m.group(3)}-{int(m.group(2)):02d}-{int(m.group(1)):02d}"
+        else:  # fall back to the list number: week n of the year
+            y, n = f.stem.split("-")[:2]
+            import datetime as dt
+            date = (dt.date(int(y), 1, 1) + dt.timedelta(weeks=int(n) - 1)).isoformat()
+        found = {}
+        for line in text.splitlines():
+            mm = re.match(r"\s*\d+\s+(.+?)\s+(?:19|20)\d{2}\s+hl\.\s+([\d.]+,\d+)\s+([\d.]+,\d+)", line, re.I)
+            if not mm:
+                continue
+            low = mm.group(1).strip().lower()
+            lo, hi = num(mm.group(2)), num(mm.group(3))
+            if not lo or not hi or not (20 <= lo <= hi <= 3000):
+                continue
+            for name, pat in FI_SERIES:
+                if re.match(pat, low):
+                    found.setdefault(name, []).append((lo + hi) / 2)
+                    break
+        for name, vals in found.items():
+            rows.append({"ms": "IT", "wine": name + " (Florence)", "unit": "Euro / HL.", "date": date,
+                         "price": round(_median(vals), 2), "region": "Tuscany"})
+    return rows
+
+
 def all_rows():
     out = []
-    for fn in (franceagrimer,):
+    for fn in (franceagrimer, asti, firenze):
         try:
             out += fn()
         except Exception as e:  # a broken source must not break the whole build
