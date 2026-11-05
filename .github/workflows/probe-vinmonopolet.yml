@@ -1,0 +1,19 @@
+name: Probe Vinmonopolet API
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check which product fields the open API returns
+        env:
+          KEY: ${{ secrets.VINMONOPOLET_KEY }}
+        run: |
+          if [ -z "$KEY" ]; then echo "VINMONOPOLET_KEY secret is not set"; exit 1; fi
+          for path in "products/v0/details-normal?maxResults=3" "products/v0/details-normal?maxResults=3&productId=1101" "products/v0/accumulated-stock?maxResults=3"; do
+            echo "=== $path"
+            curl -sS -m 60 -w "\nHTTP %{http_code}\n" -H "Ocp-Apim-Subscription-Key: $KEY" "https://apis.vinmonopolet.no/$path" | head -c 4000
+            echo
+          done
