@@ -1,8 +1,16 @@
 name: Probe sources (temporary)
 on: workflow_dispatch
+permissions:
+  contents: write
 jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: python tools/probe.py
+      - name: Save fetched files to the probe-cache branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan probe-cache
+          git rm -rq --cached . && git add raw && git commit -qm "probe cache" && git push -f origin probe-cache
