@@ -32,6 +32,7 @@ import pathlib
 import re
 import statistics
 import sys
+import urllib.error
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -83,8 +84,13 @@ def download(url=ALKO_URL):
     req = urllib.request.Request(url, headers={
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) wine-index/1.0",
         "Accept": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,*/*"})
-    with urllib.request.urlopen(req, timeout=120) as r:
-        return r.read()
+    try:
+        with urllib.request.urlopen(req, timeout=120) as r:
+            return r.read()
+    except urllib.error.HTTPError as e:
+        body = e.read()[:600].decode("utf-8", "replace")
+        print(f"Download failed: HTTP {e.code}\nHeaders: {dict(e.headers)}\nBody: {body}", file=sys.stderr)
+        raise
 
 
 def num(v):
