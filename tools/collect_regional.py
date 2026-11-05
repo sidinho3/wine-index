@@ -43,14 +43,15 @@ def links(base, html, pattern):
     return list(dict.fromkeys(out))
 
 
-def save_pdf_text(src, name, url):
+def save_pdf_text(src, name, url, quiet=False):
     out = RAW / src / (name + ".txt")
     if out.exists():
         return False
     try:
         pdf = get(url)
     except Exception as e:
-        print(f"  skip {url}: {e}")
+        if not quiet:
+            print(f"  skip {url}: {e}")
         return False
     if not pdf.startswith(b"%PDF"):
         print(f"  not a PDF: {url}")
@@ -67,12 +68,15 @@ def asti():
     n = 0
     base = ("https://www.aa.camcom.it/prezzi-indici-analisi-economica-e-rilevazioni-statistiche/"
             "prezzi-e-indici-della-provincia-di-asti/quotazioni-dei-vini-arretrati")
-    for u in links(base, get(base), r"/Vini_\d{8}_\d+\.pdf$"):
+    page2 = "https://www.aa.camcom.it/prezzi-indici-analisi-economica-e-rilevazioni-statistiche/prezzi-e-indici-della-provincia-di-asti"
+    vini = links(base, get(base), r"/Vini_\d{8}_\d+\.pdf$") + links(page2, get(page2), r"/Vini_\d{8}_\d+\.pdf$")
+    for u in dict.fromkeys(vini):
         d = re.search(r"Vini_(\d{8})", u).group(1)
         n += save_pdf_text("asti", f"{d[:4]}-{d[4:6]}-{d[6:]}", u)
     # newer lists are posted as news items
-    for page in range(0, 12):
-        s = f"https://www.aa.camcom.it/notizie?page={page}"
+    pages = [f"https://www.aa.camcom.it/notizie?page={p}" for p in range(0, 40)]
+    pages += [f"https://www.aa.camcom.it/search/node?keys=prezzi%20del%20vino&page={p}" for p in range(0, 10)]
+    for s in pages:
         try:
             html = get(s)
         except Exception as e:
@@ -93,6 +97,21 @@ def firenze():
         if not m or re.search(r"petrol", name, re.I):
             continue
         n += save_pdf_text("firenze", f"{m.group(2)}-{int(m.group(1)):02d}", u)
+    # older lists (2013-2020) are no longer linked, but still sit at predictable addresses
+    for year in range(2013, 2021):
+        for k in range(1, 54):
+            name = f"{year}-{k:02d}"
+            if (RAW / "firenze" / (name + ".txt")).exists() or (RAW / "firenze" / ".missing" / name).exists():
+                continue
+            ok = False
+            for pat in (f"listino%20n.%20{k}%20-%20{year}.pdf", f"listino%20n.%20{k}%20-{year}.pdf",
+                        f"listino%20n.%20%20{k}%20-%20{year}.pdf"):
+                if save_pdf_text("firenze", name, "https://www.fi.camcom.gov.it/sites/default/files/" + pat, quiet=True):
+                    ok, n = True, n + 1
+                    break
+            if not ok:   # remember misses so later runs don't retry them
+                (RAW / "firenze" / ".missing").mkdir(parents=True, exist_ok=True)
+                (RAW / "firenze" / ".missing" / name).touch()
     print(f"firenze: {n} new")
 
 
