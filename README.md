@@ -1,5 +1,15 @@
 # Regional Wine Index
 
+Two sets of indices, published with GitHub Pages:
+
+- **EU bulk index** (`site/index.html`): fully automatic. Every Tuesday `eu_fetch.py` pulls the
+  European Commission's wine price history (monthly producer prices in €/hl for France from 2009,
+  Germany from 2011, and Italy and Spain from 2017), and `eu_index.py` builds headline, country,
+  quality-tier and colour indices.
+- **Bottle index** (`site/bottles.html`): built from Alko price lists that you upload (see below).
+
+## Bottle index
+
 Regional bottle-price indices in the style of Liv-ex (Bordeaux, Burgundy, Champagne, Rhône,
 Loire, Piedmont, Tuscany, Rioja, Port & Douro, California, plus country indices), built from the
 free Alko price list. Alko is Finland's national wine retailer, and its list has thousands of wines

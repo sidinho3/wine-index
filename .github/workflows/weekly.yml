@@ -3,7 +3,7 @@ name: Rebuild wine index
 on:
   push:
     branches: [main]
-    paths: ["inbox/**.xlsx", "wine_index.py", "site/**"]
+    paths: ["inbox/**.xlsx", "wine_index.py"]
   workflow_dispatch:
 
 permissions:
