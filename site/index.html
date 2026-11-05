@@ -55,8 +55,8 @@ const mfmt = m => new Date(m + "-01T00:00:00").toLocaleDateString(undefined, { m
 const pct = (a, b) => (a != null && b) ? (a / b - 1) * 100 : null;
 const chg = v => v == null ? '<span class="muted">–</span>'
   : `<span class="${v > 0.05 ? "up" : v < -0.05 ? "down" : ""}">${v > 0 ? "+" : ""}${f1(v)}%</span>`;
-const KIND = { summary: "Headline index", country: "Country index", tier: "Quality tier index", colour: "Colour index", series: "Single price series" };
-const SEC = { summary: "Headline", country: "By country", tier: "By quality tier", colour: "By colour" };
+const KIND = { summary: "Headline index", country: "Country index", region: "Regional index", tier: "Quality tier index", colour: "Colour index", series: "Single price series" };
+const SEC = { summary: "Headline", country: "By country and region", region: "By country and region", tier: "By quality tier", colour: "By colour" };
 const TIER_SHORT = { "PDO": "Protected origin", "PGI": "IGP", "No GI": "No GI" };
 
 let state = { g: "all", months: 0, q: "" };
@@ -85,7 +85,7 @@ function render() {
   $("range").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", +b.dataset.m === state.months));
   const g = group(state.g);
   $("h-kind").textContent = KIND[g.kind];
-  $("h-name").textContent = g.kind === "series" ? seriesLabel(g.id.slice(2)) : g.name;
+  $("h-name").textContent = g.kind === "series" ? seriesLabel(g.id.slice(2)) : g.kind === "region" ? `${g.name}, ${g.country}` : g.name;
   $("h-lvl").textContent = f2(g.index.at(-1));
   const lm = lastMonth(g);
   const stale = lm < D.months.at(-1) ? `<span class="stale">data to ${mfmt(lm)}</span>` : `<span class="stale">${mfmt(lm)}</span>`;
@@ -182,10 +182,11 @@ function renderIndexTable() {
   let h = `<thead><tr><th>Index</th><th>Level</th><th>1M</th><th>1Y</th><th>5Y</th><th>10Y</th><th>Since start</th><th>Series</th><th>Data to</th><th>Last 5 yrs</th></tr></thead><tbody>`;
   let last = null;
   for (const g of D.groups.filter(g => g.kind !== "series")) {
-    if (g.kind !== last) { h += `<tr class="sec"><td colspan="10">${SEC[g.kind]}</td></tr>`; last = g.kind; }
+    const sec = SEC[g.kind];
+    if (sec !== last) { h += `<tr class="sec"><td colspan="10">${sec}</td></tr>`; last = sec; }
     const v = g.index.at(-1);
     h += `<tr class="idx${g.id === state.g ? " sel" : ""}" data-g="${esc(g.id)}" tabindex="0">
-      <td><span class="nm">${esc(g.name)}</span> <span class="muted from" style="font-size:12px">from ${D.months[g.start].slice(0, 4)}</span></td>
+      <td${g.kind === "region" ? ' class="reg"' : ""}><span class="nm">${esc(g.name)}</span> <span class="muted from" style="font-size:12px">from ${D.months[g.start].slice(0, 4)}</span></td>
       <td class="num">${f2(v)}</td><td class="num">${chg(pct(v, back(g, 1)))}</td><td class="num">${chg(pct(v, back(g, 12)))}</td>
       <td class="num">${chg(pct(v, back(g, 60)))}</td><td class="num">${chg(pct(v, back(g, 120)))}</td><td class="num">${chg(pct(v, 100))}</td>
       <td class="num">${g.members.length}</td><td class="num">${mfmt(lastMonth(g))}</td><td>${spark(g.index)}</td></tr>`;

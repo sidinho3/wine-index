@@ -49,11 +49,23 @@ def colour(wine):
     return None
 
 
+# Wine region for each price-reporting area (first word of the EU series name).
+# France reports national figures only, so it has no regions.
+REGION_OF = {
+    "Mosel": ("DE", "Mosel"), "Pfalz": ("DE", "Pfalz"), "Rheingau": ("DE", "Rheingau"),
+    "Rheinhessen": ("DE", "Rheinhessen"),
+    "Verona": ("IT", "Veneto"), "Bari": ("IT", "Puglia"), "Trapani": ("IT", "Sicily"),
+    "Pescara": ("IT", "Abruzzo"), "Lugo": ("IT", "Emilia-Romagna"), "Ravenna": ("IT", "Emilia-Romagna"),
+    "Albacete": ("ES", "Castilla-La Mancha"), "Ciudad": ("ES", "Castilla-La Mancha"),
+    "Toledo": ("ES", "Castilla-La Mancha"), "Badajoz": ("ES", "Extremadura"),
+    "Valencia": ("ES", "Valencia"), "Rioja": ("ES", "Rioja"), "Rueda": ("ES", "Rueda (Castilla y León)"),
+}
+
+
 def area(ms, wine):
-    if ms == "FR":
-        return "France (national)"
-    m = re.match(r"([A-ZÄÖÜ][\wäöüß]+(?: [A-Z][\w]+)?)", wine)
-    return m.group(1) if m else wine
+    first = wine.split()[0] if wine else ""
+    hit = REGION_OF.get(first)
+    return hit[1] if hit and hit[0] == ms else None
 
 
 def mi(m):  # "YYYY-MM" -> month number
@@ -95,6 +107,10 @@ def main():
     defs = [("all", "All EU bulk wine", "summary", lambda s: True)]
     for code, name in COUNTRY.items():
         defs.append((code.lower(), name, "country", lambda s, c=code: s["ms"] == c))
+        regs = sorted({x["area"] for x in series.values() if x["ms"] == code and x["area"]})
+        for r in regs:
+            defs.append((f"reg-{code.lower()}-{re.sub(r'[^a-z]+', '-', r.lower()).strip('-')}", r, "region",
+                         lambda s, c=code, r=r: s["ms"] == c and s["area"] == r))
     for t in ("PDO", "PGI", "No GI"):
         defs.append(("tier-" + t.lower().replace(" ", ""), {"PDO": "Protected origin (AOP/DOP/QbA)",
                      "PGI": "Geographical indication (IGP)", "No GI": "No geographical indication"}[t],
@@ -141,6 +157,7 @@ def main():
         groups.append({
             "id": gid, "name": name, "kind": kind, "start": start, "end": end,
             "index": idx[start:end], "count": cnt[start:end],
+            "country": COUNTRY.get(mem[0]["ms"]) if kind in ("country", "region") else None,
             "members": [f'{s["ms"]}|{s["wine"]}' for s in mem],
         })
 
@@ -148,7 +165,7 @@ def main():
     for k, s in series.items():
         ms_sorted = sorted(s["obs"])
         comp.append({"id": k, "ms": s["ms"], "country": s["country"], "wine": s["wine"], "unit": s["unit"],
-                     "tier": s["tier"], "colour": s["colour"], "first": ms_sorted[0], "last": ms_sorted[-1],
+                     "tier": s["tier"], "colour": s["colour"], "region": s["area"], "first": ms_sorted[0], "last": ms_sorted[-1],
                      "months": len(ms_sorted), "prices": {m: s["raw"][m] for m in ms_sorted}})
 
     payload = {
