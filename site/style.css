@@ -1,10 +1,10 @@
 :root {
   color-scheme: dark;
-  --bg: #0d1830; --surface: #070e1f; --border: #22345a; --grid: #142140;
+  --bg: #070e1f; --surface: #0f1c38; --border: #22345a; --grid: #1a2a4a;
   --ink: #f2f4f9; --ink-2: #c3cbdc; --ink-3: #8e99b3;
-  --accent: #d8b25c; --accent-soft: #1d2640;
+  --accent: #d8b25c; --accent-soft: #263152;
   --line: #e3bd62; --ref: #7f8db0;
-  --row-hover: #101b33;
+  --row-hover: #16264a;
 }
 
 * { box-sizing: border-box; }
