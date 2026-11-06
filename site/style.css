@@ -11,7 +11,7 @@
 body { margin: 0; background: var(--bg); color: var(--ink);
   font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
 .num { font-variant-numeric: tabular-nums; }
-header.top { border-bottom: 1px solid var(--border); background: var(--surface); }
+header.top { border-bottom: 1px solid var(--border); background: var(--bg); }
 header.top .in { max-width: 1120px; margin: 0 auto; padding: 18px 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
 .brand { display: flex; align-items: center; gap: 10px; }
 .brand svg { color: var(--accent); }
